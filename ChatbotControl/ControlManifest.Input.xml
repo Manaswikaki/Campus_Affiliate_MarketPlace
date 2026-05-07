@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://schemas.microsoft.com/PowerApps/2019/CustomControlManifest">
+
+  <control
+    namespace="ChatbotComponent"
+    constructor="ChatbotControl"
+    version="1.0.0"
+    display-name-key="ChatbotControl"
+    description-key="ChatbotControl description"
+    control-type="standard">
+
+    <external-service-usage enabled="true">
+      <domain>chatling.ai</domain>
+      <domain>share.chatling.ai</domain>
+    </external-service-usage>
+
+    <property
+      name="sampleProperty"
+      display-name-key="Property_Display_Key"
+      description-key="Property_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="bound"
+      required="false" />
+
+    <resources>
+      <code path="index.ts" order="1" />
+    </resources>
+
+  </control>
+
+</manifest>
