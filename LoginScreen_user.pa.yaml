@@ -1,0 +1,204 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  LoginScreen_user:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      ImagePosition: =ImagePosition.Fill
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: =Set(showError, false)
+    Children:
+      - BackGround:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =ColorValue("#FAF4DF")
+            Height: =675
+            Width: =581
+            X: =27
+            Y: =258
+      - LoginLabel:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Text: ="USER LOGIN"
+            X: =40
+            Y: =290
+      - EmailLabel:
+          Control: Label@2.5.1
+          Group: Group5
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            Text: ="Email "
+            X: =48
+            Y: =373
+      - Header:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            Width: =640
+      - Create:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Icon: =Icon.Add
+            OnSelect: =Navigate(CreateAccount_Screen)
+            X: =576
+      - Userinput:
+          Control: Classic/TextInput@2.3.2
+          Group: Group5
+          Properties:
+            BorderColor: =ColorValue("#E3562B")
+            Default: =
+            Font: =Font.'Open Sans'
+            HintText: ="Enter your Email"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            OnChange: |-
+              =If(showError, UpdateContext({showError: false}))
+            OnSelect: =Set(showError, false)
+            PaddingLeft: =50
+            Width: =541
+            X: =48
+            Y: =443
+      - Passwordinput:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =ColorValue("#E3562B")
+            Default: =
+            Font: =Font.'Open Sans'
+            HintText: ="Enter your Password"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            Mode: =If(varShowPassword, TextMode.SingleLine, TextMode.Password)
+            OnChange: |-
+              =If(showError, UpdateContext({showError: false}))
+            OnSelect: =Set(showError, false)
+            PaddingLeft: =50
+            Width: =541
+            X: =46
+            Y: =586
+      - usericon:
+          Control: Classic/Icon@2.5.0
+          Group: Group5
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#E3562B")
+            Height: =44
+            Icon: =Icon.AddUser
+            Width: =36
+            X: =51
+            Y: =456
+      - Passwordicon:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#E3562B")
+            Height: =44
+            Icon: =Icon.Lock
+            Width: =36
+            X: =51
+            Y: =599
+      - Loginbutton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =ColorValue("#E3562B")
+            Font: =Font.'Open Sans'
+            Height: =56
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+            OnSelect: "=// 1. Search for user (Case-insensitive by default in most sources)\r\nSet(\r\n    varUser, \r\n    LookUp( \r\n        Student_Credentials, \r\n        User_Email = Userinput.Text && Password = Passwordinput.Text \r\n    ) \r\n); \r\nSet(\r\n    varCurrentUser,\r\n    LookUp(\r\n        'User (Student/Buyer)',\r\n        Lower(Email) = Lower(Userinput.Text)\r\n    )\r\n);\r\n\r\n// 2. Validate result and run actions\r\nIf( \r\n    !IsBlank(varUser), \r\n    \r\n    // Success: Set email, run flow, and move to Home\r\n    Set(varUserEmail, varUser.User_Email); \r\n    Login_Flow.Run(varUser.User_Email); \r\n    Navigate(HomeScreen, ScreenTransition.Fade), \r\n    \r\n    // Failure: Show error message\r\n    UpdateContext({showError: true}) \r\n); \r\n\r\n// 3. Always clear inputs for security\r\nReset(Userinput); \r\nReset(Passwordinput)\r\n\r\n"
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            Text: ="Login"
+            Width: =176
+            X: =224
+            Y: =794
+      - labelError:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 0, 0, 1)
+            Font: =Font.'Open Sans'
+            Height: =44
+            Size: =15
+            Text: |-
+              ="Password or User Email is incorrect. Please Try Again.
+               No Account Create Account"
+            Visible: =showError
+            Width: =555
+            X: =51
+            Y: =691
+      - ForgetPasswordbutton:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            Color: =RGBA(151, 0, 0, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =Font.'Open Sans'
+            Height: =38
+            HoverBorderColor: =RGBA(0,0,0,0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            OnSelect: =Navigate(EnterEmail)
+            PressedBorderColor: =RGBA(0,0,0,0)
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(0,0,0,0)
+            Size: =12
+            Text: ="Forgot Password"
+            Width: =210
+            X: =207
+            Y: =735
+      - PasswordLabel:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            Text: |-
+              ="Paasword
+              "
+            X: =46
+            Y: =516
+      - ViewIcon:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            Height: =44
+            Icon: =If(varShowPassword, Icon.Hide, Icon.View)
+            OnSelect: =Set(varShowPassword, !varShowPassword)
+            Width: =36
+            X: =538
+            Y: =599
+      - Icon10_11:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Fill: =ColorValue("#E3562B")
+            Height: =40
+            Icon: =Icon.BackArrow
+            OnSelect: =Navigate(LoginScreen)
+            Width: =44
+            X: =7
+            Y: =12

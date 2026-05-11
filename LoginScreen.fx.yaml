@@ -1,0 +1,61 @@
+LoginScreen As screen:
+    BackgroundImage: =
+    Fill: =RGBA(255, 255, 255, 1)
+    ImagePosition: =ImagePosition.Fill
+    OnVisible: =Set(showError, false)
+
+    Header_15 As rectangle:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        Width: =640
+        ZIndex: =1
+
+    Create_2 As icon.Add:
+        Color: |-
+            =ColorValue("#FAF4DF")
+        Icon: =Icon.Add
+        OnSelect: =Navigate(CreateAccount_Screen)
+        X: =576
+        ZIndex: =2
+
+    BackGround_5 As rectangle:
+        Fill: |-
+            =ColorValue("#FAF4DF")
+        Height: =332
+        Width: =571
+        X: =37
+        Y: =357
+        ZIndex: =3
+
+    LoginLabel_5 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =21
+        Text: |-
+            ="LOGIN
+            "
+        Width: =560
+        X: =37
+        Y: =383
+        ZIndex: =4
+
+    Administration_pic As image:
+        Height: =130
+        Image: =administrator
+        OnSelect: =Navigate(LoginScreen_admin)
+        Width: =134
+        X: =94
+        Y: =486
+        ZIndex: =13
+
+    User_pic As image:
+        Height: =130
+        Image: =user
+        OnSelect: =Navigate(LoginScreen_user)
+        Width: =134
+        X: =384
+        Y: =486
+        ZIndex: =14
+

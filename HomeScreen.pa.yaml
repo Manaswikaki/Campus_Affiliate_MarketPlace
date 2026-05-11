@@ -1,0 +1,339 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  HomeScreen:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Container4_1:
+          Control: GroupContainer@1.5.0
+          Variant: ManualLayout
+          Properties:
+            Height: =138
+            Width: =640
+          Children:
+            - Label5_1:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  Fill: =ColorValue("#E3562B")
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Bold
+                  Height: =138
+                  Size: =30
+                  Text: ="Welcome, " & LookUp(Student_Credentials, User_Email = User().Email, Name)
+                  Width: =640
+      - Label7_1:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Semibold
+            Height: =37
+            Size: =27
+            Text: ="Platforms"
+            X: =38
+            Y: =166
+      - Container1_3:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Horizontal
+            LayoutWrap: =true
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            Width: =640
+            Y: =1072
+          Children:
+            - Homeicon_7:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Home
+                  OnSelect: =Navigate(HomeScreen)
+                  Width: =44
+                  X: =87
+                  Y: =761
+            - Searchicon_9:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Search
+                  OnSelect: =Navigate(SearchScreen)
+                  Width: =44
+                  X: =189
+                  Y: =777
+            - Wishlisticon_9:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =35
+                  Icon: =Icon.Support
+                  OnSelect: =Launch("https://share.chatling.ai/s/yR35Zd5YPEad9RZ")
+                  Width: =44
+                  X: =327
+                  Y: =801
+            - Icon1_9:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =44
+                  Icon: =Icon.ListScrollWatchlist
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  OnSelect: =Navigate(CategoriesScreen)
+                  Width: =44
+            - Profileicon_9:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Person
+                  OnSelect: =Navigate(ProfileScreen)
+                  Width: =44
+                  X: =523
+                  Y: =701
+      - Label8_1:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            Height: =58
+            Size: =27
+            Text: ="Top Deals"
+            Width: =530
+            X: =28
+            Y: =494
+      - Image11_7:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderThickness: =1
+            Height: =90
+            Image: =flipkart
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: |-
+              =Set(selectedPlatform, "FLIPKART");
+              Navigate(FilterScreen, ScreenTransition.Fade)
+            Width: =166
+            X: =40
+            Y: =390
+      - Image11_8:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderThickness: =1
+            Height: =90
+            Image: =myntra
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: |-
+              =Set(selectedPlatform, "Myntra");
+              Navigate(FilterScreen, ScreenTransition.Fade)
+            Width: =166
+            X: =234
+            Y: =390
+      - Image11_6:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderThickness: =1
+            Height: =90
+            Image: =mamaearth
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: |-
+              =Set(selectedPlatform, "Mamaearth");
+              Navigate(FilterScreen, ScreenTransition.Fade)
+            Width: =166
+            X: =445
+            Y: =390
+      - Image11_9:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderThickness: =1
+            Height: =90
+            Image: =derma
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: |-
+              =Set(selectedPlatform, "The Derma Co");
+              Navigate(FilterScreen, ScreenTransition.Fade)
+            Width: =166
+            X: =237
+            Y: =237
+      - Image11_10:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Height: =90
+            Image: ='dot & key'
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: |-
+              =Set(selectedPlatform, "Dot&Key");
+              Navigate(FilterScreen, ScreenTransition.Fade)
+            Width: =166
+            X: =445
+            Y: =237
+      - Image11_11:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Height: =90
+            Image: =Ajio
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: |-
+              =Set(selectedPlatform, "Ajio");
+              Navigate(FilterScreen, ScreenTransition.Fade)
+            Width: =166
+            X: =40
+            Y: =237
+      - Icon12_5:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =ColorValue("#FAF4DF")
+            DisabledBorderColor: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            Fill: =ColorValue("#E3562B")
+            FocusedBorderThickness: =0
+            Height: =45
+            Icon: =Icon.Heart
+            OnSelect: =Navigate(FavoritesScreen)
+            Width: =49
+            X: =558
+            Y: =46
+      - Gallery3:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =518
+            Items: =List_Products
+            OnSelect: |-
+              =Set(
+                  varSelectedProduct,
+                  ThisItem
+              );
+
+              Navigate(
+                  ProductDetailScreen,
+                  ScreenTransition.Fade
+              )
+            Width: =602
+            X: =24
+            Y: =552
+          Children:
+            - Image1:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =92
+                  Image: =ThisItem.IMAGEURL
+                  OnSelect: =Select(Parent)
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                  Width: =123
+                  X: =15
+                  Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            - Title1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =Self.Size * 1.8
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =14
+                  Text: =ThisItem.PRODUCTNAME
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.TemplateWidth - 173
+                  X: =123
+                  Y: =27
+            - Subtitle1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =Self.Size * 1.8
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =12
+                  Text: =ThisItem.Sub_Category
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Title1.Width
+                  X: =123
+                  Y: =53
+            - NextArrow1:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  AccessibleLabel: =Self.Tooltip
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(166, 166, 166, 1)
+                  DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                  DisabledColor: =RGBA(119, 119, 119, 1)
+                  Height: =50
+                  Icon: =Icon.ChevronRight
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =16
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =16
+                  Tooltip: ="View item details"
+                  Width: =50
+                  X: =Parent.TemplateWidth - Self.Width - 12
+                  Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            - Separator1:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =8
+                  OnSelect: =Select(Parent)
+                  Width: =Parent.TemplateWidth
+                  Y: =Parent.TemplateHeight - Self.Height
+            - Rectangle1:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(0, 18, 107, 1)
+                  Height: =Parent.TemplateHeight - Separator1.Height
+                  OnSelect: =Select(Parent)
+                  Visible: =ThisItem.IsSelected
+                  Width: =4

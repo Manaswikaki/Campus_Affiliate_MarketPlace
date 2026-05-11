@@ -1,0 +1,343 @@
+HomeScreen As screen:
+    ContentLanguage: =""
+    Fill: =Color.White
+    LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+
+    Container4_1 As groupContainer.manualLayoutContainer:
+        Height: =138
+        LayoutGridColumnMinWidth: =0
+        LayoutGridColumns: =6
+        LayoutGridRowMinHeight: =0
+        LayoutGridRows: =6
+        maximumHeight: =11360
+        maximumWidth: =640
+        Width: =640
+        ZIndex: =1
+
+        Label5_1 As label:
+            Align: =Align.Center
+            Color: |-
+                =ColorValue("#FAF4DF")
+            Fill: |-
+                =ColorValue("#E3562B")
+            FontWeight: =FontWeight.Bold
+            Height: =138
+            Size: =30
+            Text: ="Welcome, " & LookUp(Student_Credentials, User_Email = User().Email, Name)
+            Width: =640
+            ZIndex: =1
+
+    Label7_1 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =37
+        Size: =27
+        Text: ="Platforms"
+        Width: =560
+        X: =38
+        Y: =166
+        ZIndex: =2
+
+    Container1_3 As groupContainer.horizontalAutoLayoutContainer:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutGridColumnMinWidth: =0
+        LayoutGridColumns: =6
+        LayoutGridRowMinHeight: =0
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        LayoutWrap: =true
+        maximumHeight: =11360
+        maximumWidth: =640
+        PaddingBottom: =8
+        PaddingLeft: =8
+        PaddingRight: =8
+        PaddingTop: =8
+        Width: =640
+        Y: =1072
+        ZIndex: =3
+
+        Homeicon_7 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Home
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(HomeScreen)
+            Width: =44
+            X: =87
+            Y: =761
+            ZIndex: =1
+
+        Searchicon_9 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Search
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(SearchScreen)
+            Width: =44
+            X: =189
+            Y: =777
+            ZIndex: =2
+
+        Wishlisticon_9 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =35
+            Icon: =Icon.Support
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: |-
+                =Launch("https://share.chatling.ai/s/yR35Zd5YPEad9RZ")
+            Width: =44
+            X: =327
+            Y: =801
+            ZIndex: =3
+
+        Icon1_9 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =44
+            Icon: =Icon.ListScrollWatchlist
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =16
+            LayoutMinWidth: =16
+            OnSelect: =Navigate(CategoriesScreen)
+            Width: =44
+            ZIndex: =4
+
+        Profileicon_9 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Person
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(ProfileScreen)
+            Width: =44
+            X: =523
+            Y: =701
+            ZIndex: =5
+
+    Label8_1 As label:
+        Height: =58
+        Size: =27
+        Text: ="Top Deals"
+        Width: =530
+        X: =28
+        Y: =494
+        ZIndex: =4
+
+    Image11_7 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =flipkart
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: |-
+            =Set(selectedPlatform, "FLIPKART");
+            Navigate(FilterScreen, ScreenTransition.Fade)
+        Width: =166
+        X: =40
+        Y: =390
+        ZIndex: =5
+
+    Image11_8 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =myntra
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: |-
+            =Set(selectedPlatform, "Myntra");
+            Navigate(FilterScreen, ScreenTransition.Fade)
+        Width: =166
+        X: =234
+        Y: =390
+        ZIndex: =6
+
+    Image11_6 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =mamaearth
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: |-
+            =Set(selectedPlatform, "Mamaearth");
+            Navigate(FilterScreen, ScreenTransition.Fade)
+        Width: =166
+        X: =445
+        Y: =390
+        ZIndex: =7
+
+    Image11_9 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =derma
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: |-
+            =Set(selectedPlatform, "The Derma Co");
+            Navigate(FilterScreen, ScreenTransition.Fade)
+        Width: =166
+        X: =237
+        Y: =237
+        ZIndex: =8
+
+    Image11_10 As image:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Height: =90
+        Image: ='dot & key'
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: |-
+            =Set(selectedPlatform, "Dot&Key");
+            Navigate(FilterScreen, ScreenTransition.Fade)
+        Width: =166
+        X: =445
+        Y: =237
+        ZIndex: =9
+
+    Image11_11 As image:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Height: =90
+        Image: =Ajio
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: |-
+            =Set(selectedPlatform, "Ajio");
+            Navigate(FilterScreen, ScreenTransition.Fade)
+        Width: =166
+        X: =40
+        Y: =237
+        ZIndex: =10
+
+    Icon12_5 As icon:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: |-
+            =ColorValue("#FAF4DF")
+        DisabledBorderColor: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(0, 0, 0, 1)
+        Fill: |-
+            =ColorValue("#E3562B")
+        FocusedBorderThickness: =0
+        Height: =45
+        Icon: =Icon.Heart
+        OnSelect: =Navigate(FavoritesScreen)
+        Width: =49
+        X: =558
+        Y: =46
+        ZIndex: =11
+
+    "Gallery3 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =518
+        Items: =List_Products
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        OnSelect: |-
+            =Set(
+                varSelectedProduct,
+                ThisItem
+            );
+            
+            Navigate(
+                ProductDetailScreen,
+                ScreenTransition.Fade
+            )
+        TemplatePadding: =0
+        TemplateSize: =104
+        Width: =602
+        X: =24
+        Y: =552
+        ZIndex: =12
+
+        Image1 As image:
+            Height: =92
+            Image: =ThisItem.IMAGEURL
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =123
+            X: =15
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        Title1 As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(50, 49, 48, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: =ThisItem.PRODUCTNAME
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 173
+            X: =123
+            Y: =27
+            ZIndex: =2
+
+        Subtitle1 As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.Sub_Category
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title1.Width
+            X: =123
+            Y: =53
+            ZIndex: =3
+
+        NextArrow1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(166, 166, 166, 1)
+            DisabledBorderColor: =RGBA(56, 56, 56, 1)
+            DisabledColor: =RGBA(119, 119, 119, 1)
+            Height: =50
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =4
+
+        Separator1 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =8
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =5
+
+        Rectangle1 As rectangle:
+            Fill: =RGBA(0, 18, 107, 1)
+            Height: =Parent.TemplateHeight - Separator1.Height
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            ZIndex: =6
+

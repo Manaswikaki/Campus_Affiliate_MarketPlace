@@ -1,0 +1,108 @@
+EnterOTP As screen:
+    BackgroundImage: =
+    Fill: =RGBA(255, 255, 255, 1)
+    ImagePosition: =ImagePosition.Fill
+
+    Header_otp As rectangle:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        Width: =640
+        ZIndex: =1
+
+    BackGround_otp As rectangle:
+        Fill: |-
+            =ColorValue("#FAF4DF")
+        Height: =675
+        Width: =581
+        X: =27
+        Y: =258
+        ZIndex: =2
+
+    otpmainlabel As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =21
+        Text: ="Enter OTP To Reset the Password"
+        Width: =560
+        X: =32
+        Y: =324
+        ZIndex: =3
+
+    otplabel As label:
+        Height: =70
+        Size: =21
+        Text: ="OTP"
+        Width: =560
+        X: =45
+        Y: =443
+        ZIndex: =4
+
+    Validatebutton As button:
+        DisplayMode: |-
+            =If(
+                !IsBlank(otpinput.Text) &&
+                Text(
+                    LookUp(
+                        Student_Credentials,
+                        User_Email = varResetEmail,
+                        OTP
+                    )
+                ) = Trim(otpinput.Text),
+            
+                DisplayMode.Edit,
+                DisplayMode.Disabled
+            )
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =51
+        OnSelect: |-
+            =Reset(otpinput);
+            Navigate(ResetPassword);
+        Size: =20
+        Text: |-
+            ="Validate
+            "
+        Width: =161
+        X: =222
+        Y: =668
+        ZIndex: =8
+
+    Icon10_2 As icon:
+        Color: |-
+            =ColorValue("#FAF4DF")
+        Height: =40
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(LoginScreen_user)
+        Width: =44
+        X: =7
+        Y: =12
+        ZIndex: =9
+
+    Group2_1 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =14
+
+        otpinput As text:
+            Default: =
+            Height: =70
+            HintText: ="Enter your OTP"
+            PaddingLeft: =50
+            Size: =21
+            Width: =541
+            X: =48
+            Y: =513
+            ZIndex: =5
+
+        otpicon As icon.AddUser:
+            Height: =44
+            Icon: =Icon.AddUser
+            Width: =36
+            X: =51
+            Y: =526
+            ZIndex: =6
+

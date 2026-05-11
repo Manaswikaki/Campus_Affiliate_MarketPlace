@@ -1,0 +1,183 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  More Screen:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Header_17:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            Width: =640
+      - Gallery1:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_TwoTextOneImageTwoColumnVariant_ver5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DelayItemLoading: =true
+            Height: =1008
+            Items: =PlatformList
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: =Launch(ThisItem.Affiliate_List)
+            Transition: =Transition.Pop
+            Y: =64
+          Children:
+            - Image3:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =Min(Self.Width, Parent.TemplateHeight - 115)
+                  Image: =ThisItem.Image_Url
+                  OnSelect: =Select(Parent)
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                  Width: =Parent.TemplateWidth - 32
+                  X: =16
+                  Y: =16
+            - Title2:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Lato Black'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =Self.Size * 1.8
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =20
+                  Text: =ThisItem.Platform
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.TemplateWidth - 64
+                  X: =32
+                  Y: =Image3.Y + Image3.Height + 16
+      - Icon2_2:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Height: =56
+            Icon: =Icon.More
+            OnSelect: =Navigate('More Screen')
+            Width: =63
+            X: =479
+      - Icon11_1:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Height: =49
+            Icon: =Icon.Heart
+            OnSelect: =Navigate(FavoritesScreen)
+            Width: =47
+            X: =569
+            Y: =7
+      - Icon10_12:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Height: =40
+            Icon: =Icon.BackArrow
+            OnSelect: =Navigate(SearchScreen)
+            Width: =44
+            X: =7
+            Y: =12
+      - Header_19:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(215, 223, 240, 1)
+            Height: =64
+            Width: =640
+            Y: =1072
+      - Container_5:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Horizontal
+            LayoutWrap: =true
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            Width: =640
+            Y: =1072
+          Children:
+            - Homeicon_2:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Home
+                  OnSelect: =Navigate(HomeScreen)
+                  Width: =44
+                  X: =87
+                  Y: =761
+            - Searchicon_7:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Search
+                  OnSelect: =Navigate('More Screen')
+                  Width: =44
+                  X: =189
+                  Y: =777
+            - Wishlisticon_7:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =35
+                  Icon: =Icon.Support
+                  OnSelect: =Launch("https://share.chatling.ai/s/PjD8JKwqYbE7ELC")
+                  Width: =44
+                  X: =327
+                  Y: =801
+            - Icon1_3:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =44
+                  Icon: =Icon.ListScrollWatchlist
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  OnSelect: =Navigate(CategoriesScreen)
+                  Width: =44
+            - Profileicon_7:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Person
+                  OnSelect: =Navigate(ProfileScreen)
+                  Width: =44
+                  X: =523
+                  Y: =701

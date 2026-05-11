@@ -1,0 +1,262 @@
+"FavoritesScreen As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    "Gallery2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageTwoColumnVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =986
+        Items: |-
+            =Filter(
+                Favorites,
+                UserEmail = varUserEmail
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        OnSelect: |-
+            =Set(
+                varSelectedProduct,
+                LookUp(
+                    List_Products,   // 👈 your main products list
+                    ID = Value(ThisItem.PRODUCTID)
+                )
+            );
+            Navigate(ProductDetailScreen);
+        TemplatePadding: =0
+        TemplateSize: =467
+        WrapCount: =2
+        Y: =85
+        ZIndex: =1
+
+        Image_fav As image:
+            Height: =Min(Self.Width, Parent.TemplateHeight - 115)
+            Image: =ThisItem.IMAGEURL
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =Parent.TemplateWidth - 32
+            X: =16
+            Y: =1
+            ZIndex: =1
+
+        Name_fav As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =22
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =15
+            Text: =ThisItem.PRODUCTNAME
+            VerticalAlign: =VerticalAlign.Top
+            Width: =288
+            X: =16
+            Y: =289
+            ZIndex: =2
+
+        Actual_fav As htmlViewer:
+            Height: =50
+            HtmlText: |-
+                ="<span style='text-decoration:line-through; color:gray;'>₹" & 
+                ThisItem.PRICE & 
+                "</span>   " &
+                
+                "<span style='color:black; font-weight:bold;'>₹" & 
+                Round(ThisItem.PRICE * (1 - ThisItem.Discount/100), 0) & 
+                "</span>"
+            OnSelect: =Select(Parent)
+            Size: =15
+            Width: =132
+            X: =12
+            Y: =342
+            ZIndex: =3
+
+        lbl_productRating_fav As label:
+            Color: |-
+                =If(
+                    Value(Substitute(ThisItem.RATING, "★", "")) >= 4, Color.Green,
+                    Value(Substitute(ThisItem.RATING, "★", "")) >= 3, Color.Orange,
+                    Color.Red
+                )
+            Fill: |-
+                =With(
+                    {
+                        rate: Value(Substitute(ThisItem.RATING, "★", ""))
+                    },
+                    If(
+                        rate >= 4, RGBA(0, 200, 0, 0.15),      // Light Green
+                        rate >= 3, RGBA(255, 165, 0, 0.15),    // Light Orange
+                        RGBA(255, 0, 0, 0.15)                  // Light Red
+                    )
+                )
+            FontWeight: =FontWeight.Bold
+            Height: =31
+            Size: =14
+            Text: =Text(Value(ThisItem.RATING), "0.0") & " ★"
+            Width: =62
+            X: =16
+            Y: =377
+            ZIndex: =6
+
+        Buttonbuy As button:
+            Height: =36
+            OnSelect: =Launch(ThisItem.'PURCHASELINK')
+            Text: ="Buy Now"
+            Width: =277
+            X: =21
+            Y: =424
+            ZIndex: =7
+
+        Discount As label:
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: |-
+                =If(
+                    Value(Substitute(ThisItem.Discount, "%", "")) <= 30, Color.Red,
+                    Value(Substitute(ThisItem.Discount, "%", "")) <= 70, Color.Orange,
+                    Color.Green
+                )
+            Font: =Font.'Lato Black'
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =27
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =15
+            Text: =ThisItem.Discount & "% OFF"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =85
+            X: =20
+            Y: =318
+            ZIndex: =8
+
+        d_price As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(50, 49, 48, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =30
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.DISCOUNTPRICE
+            VerticalAlign: =VerticalAlign.Top
+            Width: =132
+            X: =120
+            Y: =331
+            ZIndex: =9
+
+    Container_4 As groupContainer.horizontalAutoLayoutContainer:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutGridColumnMinWidth: =0
+        LayoutGridColumns: =6
+        LayoutGridRowMinHeight: =0
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        LayoutWrap: =true
+        maximumHeight: =11360
+        maximumWidth: =640
+        PaddingBottom: =8
+        PaddingLeft: =8
+        PaddingRight: =8
+        PaddingTop: =8
+        Width: =640
+        Y: =1072
+        ZIndex: =1
+
+        Homeicon_6 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Home
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(HomeScreen)
+            Width: =44
+            X: =87
+            Y: =761
+            ZIndex: =1
+
+        Searchicon_5 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Search
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(SearchScreen)
+            Width: =44
+            X: =189
+            Y: =777
+            ZIndex: =2
+
+        Wishlisticon_5 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =35
+            Icon: =Icon.Support
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: |-
+                =Launch("https://share.chatling.ai/s/PjD8JKwqYbE7ELC")
+            Width: =44
+            X: =327
+            Y: =801
+            ZIndex: =3
+
+        Icon1_5 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =44
+            Icon: =Icon.ListScrollWatchlist
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =16
+            LayoutMinWidth: =16
+            OnSelect: =Navigate(CategoriesScreen)
+            Width: =44
+            ZIndex: =4
+
+        Profileicon_5 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Person
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(ProfileScreen)
+            Width: =44
+            X: =523
+            Y: =701
+            ZIndex: =5
+
+    Header_12 As rectangle:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        Width: =640
+        ZIndex: =2
+
+    Icon10_5 As icon:
+        Color: |-
+            =ColorValue("#FAF4DF")
+        Height: =40
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(SearchScreen)
+        Width: =44
+        X: =7
+        Y: =12
+        ZIndex: =4
+

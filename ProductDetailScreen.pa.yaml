@@ -1,0 +1,629 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  ProductDetailScreen:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: |-
+        =// Remove duplicate
+        RemoveIf(colLastViewed, ID = varSelectedProduct.ID);
+
+        // Add current product to top
+        Collect(colLastViewed, varSelectedProduct);
+
+        // Keep only last 10 items
+        If(CountRows(colLastViewed) > 10,
+            Remove(colLastViewed, First(colLastViewed))
+        );
+
+        // Save to device
+    Children:
+      - Header_11:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            Width: =640
+      - Container_3:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Horizontal
+            LayoutWrap: =true
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            Width: =640
+            Y: =1072
+          Children:
+            - Homeicon_5:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Home
+                  OnSelect: =Navigate(HomeScreen)
+                  Width: =44
+                  X: =87
+                  Y: =761
+            - Searchicon_4:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Search
+                  OnSelect: =Navigate(SearchScreen)
+                  Width: =44
+                  X: =189
+                  Y: =777
+            - Wishlisticon_4:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =35
+                  Icon: =Icon.Support
+                  OnSelect: =Launch("https://share.chatling.ai/s/PjD8JKwqYbE7ELC")
+                  Width: =44
+                  X: =327
+                  Y: =801
+            - Icon1_4:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =44
+                  Icon: =Icon.ListScrollWatchlist
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  OnSelect: =Navigate(CategoriesScreen)
+                  Width: =44
+            - Profileicon_4:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Person
+                  OnSelect: =Navigate(ProfileScreen)
+                  Width: =44
+                  X: =523
+                  Y: =701
+      - lbl_productCategory:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =36
+            Size: =15
+            Text: =varSelectedProduct.CATEGORY
+            Width: =243
+            X: =25
+            Y: =565
+      - lbl_productDiscount:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =Color.Green
+            Font: =Font.'Open Sans'
+            Height: =45
+            Size: =20
+            Text: |-
+              =If(
+                  !IsBlank(varSelectedProduct.Discount) && varSelectedProduct.Discount > 0,
+                  "↓ " & varSelectedProduct.Discount & "%",
+                  ""
+              )
+            Width: =104
+            X: =217
+            Y: =lbl_productName.Y + lbl_productName.Height + 5
+      - lbl_productRating:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: |-
+              =With(
+                  {
+                      rate: Value(Substitute(varSelectedProduct.RATING, " ★", ""))
+                  },
+                  If(
+                      rate >= 4, Color.Green,
+                      rate >= 3, Color.Orange,
+                      Color.Red
+                  )
+              )
+            Fill: |-
+              =With(
+                  {
+                      rate: Value(Substitute(varSelectedProduct.RATING, "★", ""))
+                  },
+                  If(
+                      !IsBlank(rate) && rate >= 4, RGBA(0, 200, 0, 0.15),
+                      !IsBlank(rate) && rate >= 3, RGBA(255, 165, 0, 0.15),
+                      RGBA(255, 0, 0, 0.15)
+                  )
+              )
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            Text: =Text(Value(varSelectedProduct.RATING), "0.0") & " ★"
+            Width: =92
+            X: =344
+            Y: =lbl_productName.Y + lbl_productName.Height + 5
+      - Button2:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            Color: =Color.Black
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(255, 216, 20, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(245, 205, 0, 1)
+            OnSelect: |-
+              =// 1. Run the flow and capture the response into a record variable
+              //Set(
+                //  flowResponse,
+                  //TrackClickFlow.Run(
+                    //  varSelectedProduct.PRODUCTID,
+                      //varSelectedProduct.PRODUCTNAME,
+                     // User().Email,
+                     // varSelectedProduct.PURCHASELINK
+                  //)
+              //);
+
+              // 2. Extract the specific 'link' property from that record
+              //Set(varShareLink, flowResponse.AppShareLink);
+
+              // 3. Launch the link only if it is not blank to avoid errors
+              //If(
+                //  !IsBlank(varShareLink),
+                 //Launch(varShareLink)
+              //)
+              Launch(varSelectedProduct.PURCHASELINK)
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            Size: =20
+            Text: ="Buy Now At " & "₹" & varSelectedProduct.DISCOUNTPRICE
+            Width: =316
+            X: =322
+            Y: =1002
+      - Button2_1:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(200, 200, 200, 1)
+            BorderThickness: =1
+            Color: =Color.Black
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(240, 240, 240, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            HoverBorderColor: =RGBA(0,0,0,0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            OnSelect: |-
+              =If(
+                  IsBlank(
+                      LookUp(
+                          Favorites,
+                          PRODUCTID = varSelectedProduct.Title &&
+                          UserEmail = varUserEmail
+                      )
+                  ),
+
+                  // ✅ ADD to Favorites
+              Patch(
+                  Favorites,
+                  Defaults(Favorites),
+                  {
+                      Title: varSelectedProduct.Title,
+                      PRODUCTNAME: varSelectedProduct.PRODUCTNAME,
+                      PURCHASELINK: Left(varSelectedProduct.PURCHASELINK, 255),
+                      Sub_Category: varSelectedProduct.Sub_Category,
+                      UserEmail: varUserEmail,
+                      PRODUCTID: Text(varSelectedProduct.ID),
+                      CATEGORY: varSelectedProduct.CATEGORY,
+                      BRAND: varSelectedProduct.BRAND,
+                      PRICE: varSelectedProduct.PRICE,
+                      RATING: varSelectedProduct.RATING,
+                      STOCKSTATUS: varSelectedProduct.STOCKSTATUS,
+                      IMAGEURL: Left(varSelectedProduct.IMAGEURL, 255),
+                      PLATFORM: varSelectedProduct.PLATFORM,
+                      Description: Left(varSelectedProduct.Description, 255),
+                      Discount: varSelectedProduct.Discount,
+                      Features: Left(varSelectedProduct.Features, 255)
+                  }
+              ),
+
+                  // ❌ REMOVE from Favorites
+                  Remove(
+                      Favorites,
+                      LookUp(
+                          Favorites,
+                          PRODUCTID = varSelectedProduct.Title &&
+                          UserEmail = varUserEmail
+                      )
+                  )
+              )
+            PressedBorderColor: =RGBA(0,0,0,0)
+            PressedColor: =Self.Fill
+            PressedFill: =RGBA(0,0,0,0)
+            Size: =20
+            Text: ="Add to Favourite"
+            Width: =322
+            Y: =1002
+      - Icon4:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#E3562B")
+            Height: =46
+            Icon: =Icon.Share
+            OnSelect: |-
+              =Set(
+                  varShareLink,
+                  If(
+                      StartsWith(varSelectedProduct.PURCHASELINK, "http"),
+                      varSelectedProduct.PURCHASELINK,
+                      "https://" & varSelectedProduct.PURCHASELINK
+                  )
+              );
+
+              UpdateContext({showShareOptions: !showShareOptions})
+            Width: =41
+            X: =582
+            Y: =555
+      - Icon3:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: |-
+              =If(
+                  !IsBlank(
+                      LookUp(
+                          Favorites,
+                          Title = Text(varSelectedProduct.ID)
+                      )
+                  ),
+                  Color.Red,
+                  Color.Gray
+              )
+            Fill: =RGBA(0,0,0,0)
+            Height: =36
+            Icon: =Icon.Heart
+            OnSelect: |-
+              =If(
+                  IsBlank(
+                      LookUp(
+                          Favorites,
+                          PRODUCTID = varSelectedProduct.Title &&
+                          UserEmail = varUserEmail
+                      )
+                  ),
+
+                  // ✅ ADD to Favorites
+              Patch(
+                  Favorites,
+                  Defaults(Favorites),
+                  {
+                      Title: varSelectedProduct.Title,
+                      PRODUCTNAME: varSelectedProduct.PRODUCTNAME,
+                      PURCHASELINK: Left(varSelectedProduct.PURCHASELINK, 255),
+                      Sub_Category: varSelectedProduct.Sub_Category,
+                      UserEmail: varUserEmail,
+                      PRODUCTID: Text(varSelectedProduct.ID),
+                      CATEGORY: varSelectedProduct.CATEGORY,
+                      BRAND: varSelectedProduct.BRAND,
+                      PRICE: varSelectedProduct.PRICE,
+                      RATING: varSelectedProduct.RATING,
+                      STOCKSTATUS: varSelectedProduct.STOCKSTATUS,
+                      IMAGEURL: Left(varSelectedProduct.IMAGEURL, 255),
+                      PLATFORM: varSelectedProduct.PLATFORM,
+                      Description: Left(varSelectedProduct.Description, 255),
+                      Discount: varSelectedProduct.Discount,
+                      Features: Left(varSelectedProduct.Features, 255)
+                  }
+              ),
+
+                  // ❌ REMOVE from Favorites
+                  Remove(
+                      Favorites,
+                      LookUp(
+                          Favorites,
+                          PRODUCTID = varSelectedProduct.Title &&
+                          UserEmail = varUserEmail
+                      )
+                  )
+              )
+            Width: =38
+            X: =513
+            Y: =565
+      - Container2:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =164
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            Visible: =showShareOptions
+            Width: =640
+            Y: =970
+          Children:
+            - Container3:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  BorderStyle: =BorderStyle.None
+                  DropShadow: =DropShadow.None
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMaxHeight: =190
+                  LayoutMinHeight: =100
+                  LayoutMinWidth: =16
+                  PaddingBottom: =8
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  PaddingTop: =8
+                Children:
+                  - Icon5_1:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =Color.Blue
+                        FillPortions: =1
+                        Height: =40
+                        HoverColor: =Color.Green
+                        HoverFill: =
+                        Icon: =Icon.Mail
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =8
+                        OnSelect: |-
+                          =Launch(
+                              "mailto:?subject=" &
+                              EncodeUrl("Check this product") &
+                              "&body=" &
+                              EncodeUrl(
+                                  "Check this product: " &
+                                  varSelectedProduct.PRODUCTNAME & Char(10) &
+                                  varShareLink
+                              )
+                          )
+                  - Icon6_1:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =Color.Blue
+                        FillPortions: =1
+                        Height: =40
+                        HoverColor: =Color.Green
+                        HoverFill: =
+                        Icon: =Icon.Link
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =8
+                        OnSelect: |-
+                          =Set(
+                              varCopyText,
+                              "Check this product: " & varSelectedProduct.PRODUCTNAME & Char(10) & varShareLink
+                          );
+                          Copy(varCopyText);
+                          Notify("Link copied!", NotificationType.Success)
+                  - Icon7_1:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =Color.Blue
+                        FillPortions: =1
+                        Height: =40
+                        HoverColor: =Color.Green
+                        HoverFill: =
+                        Icon: =Icon.Phone
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =8
+                        OnSelect: |-
+                          =Launch(
+                              "https://wa.me/?text=" &
+                              EncodeUrl(
+                                  "Check this product: " &
+                                  varSelectedProduct.PRODUCTNAME & Char(10) &
+                                  varShareLink
+                              )
+                          )
+                  - Icon9_1:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =Color.Blue
+                        FillPortions: =1
+                        Height: =40
+                        HoverColor: =Color.Green
+                        HoverFill: =
+                        Icon: =Icon.Copy
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =8
+                        OnSelect: =Notify("Link copied! Paste it anywhere.", NotificationType.Success)
+            - Container5:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  BorderStyle: =BorderStyle.None
+                  DropShadow: =DropShadow.None
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =8
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  PaddingTop: =8
+                Children:
+                  - lbl_mailText:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Lighter
+                        Height: =30
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =20
+                        Text: ="Mail"
+                        Width: =100
+                  - lbl_linkText:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Lighter
+                        Height: =30
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =20
+                        Text: ="Link"
+                        Width: =100
+                  - lbl_whatsappText:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Lighter
+                        Height: =30
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =20
+                        Text: ="WhatsApp"
+                        Width: =100
+                  - lbl_copyText:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =FontWeight.Lighter
+                        Height: =30
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =20
+                        Text: ="Copy"
+                        Width: =100
+      - Image5:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =493
+            Image: =varSelectedProduct.IMAGEURL
+            Width: =630
+            X: =10
+            Y: =64
+      - Icon12_1:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Height: =45
+            Icon: =Icon.Heart
+            OnSelect: =Navigate(FavoritesScreen)
+            Width: =49
+            X: =574
+            Y: =8
+      - Icon10_4:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Height: =40
+            Icon: =Icon.BackArrow
+            OnSelect: =Navigate(SearchScreen)
+            Width: =44
+            X: =7
+            Y: =12
+      - lbl_productDescription:
+          Control: Label@2.5.1
+          Properties:
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =DisplayMode.View
+            Font: =Font.'Open Sans'
+            Height: =31
+            Italic: =true
+            Overflow: =Overflow.Scroll
+            Size: =14
+            Text: =varSelectedProduct.Description
+            VerticalAlign: =VerticalAlign.Top
+            Width: =598
+            X: =26
+            Y: =Price_both.Y + Price_both.Height + 5
+      - lbl_productFeatures:
+          Control: Label@2.5.1
+          Properties:
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            Height: =152
+            Italic: =true
+            Overflow: =Overflow.Scroll
+            Size: =14
+            Text: =varSelectedProduct.Features
+            VerticalAlign: =VerticalAlign.Top
+            Width: =615
+            X: =25
+            Y: =lbl_productDescription.Y + lbl_productDescription.Height + 5
+      - lbl_productName:
+          Control: Label@2.5.1
+          Properties:
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =64
+            Italic: =true
+            Size: =18
+            Text: =varSelectedProduct.PRODUCTNAME
+            Width: =615
+            X: =25
+            Y: =lbl_productCategory.Y + lbl_productCategory.Height + 5
+      - Price_both:
+          Control: HtmlViewer@2.1.0
+          Properties:
+            AutoHeight: =true
+            Font: =Font.'Open Sans'
+            Height: =49
+            HtmlText: |-
+              ="<span style='text-decoration:line-through; color:gray;'>₹" & varSelectedProduct.PRICE & "</span> 
+              &nbsp; <span style='color:black; font-weight:bold;'>₹" & varSelectedProduct.DISCOUNTPRICE & "</span>"
+            Width: =242
+            X: =26
+            Y: =lbl_productName.Y + lbl_productName.Height + 5

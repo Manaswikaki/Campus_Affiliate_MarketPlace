@@ -1,0 +1,353 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  ProfileScreen:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      ImagePosition: =ImagePosition.Fill
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Header_21:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            Width: =640
+      - BackGround_6:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Height: =1008
+            Width: =640
+            Y: =64
+      - LoginLabel_6:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Text: ="Personal Details"
+            X: =43
+            Y: =87
+      - EmailLabel_9:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Font: =Font.'Open Sans'
+            Text: ="Full Name"
+            X: =54
+            Y: =126
+      - FullName_1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =
+            Default: =varCurrentUser.Full_Name
+            DisplayMode: =DisplayMode.View
+            EnableSpellCheck: =true
+            Font: =Font.'Open Sans'
+            HintText: =
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            OnSelect: =Set(showError, false)
+            PaddingLeft: =50
+            Width: =541
+            X: =54
+            Y: =197
+      - usericon_7:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Height: =44
+            Icon: =Icon.AddUser
+            Width: =36
+            X: =57
+            Y: =210
+      - EmailLabel_10:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Font: =Font.'Open Sans'
+            Text: ="User Name"
+            X: =57
+            Y: =269
+      - UserName_lbl_1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Default: =varCurrentUser.Username
+            DisplayMode: =DisplayMode.View
+            EnableSpellCheck: =true
+            Font: =Font.'Open Sans'
+            HintText: =
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            PaddingLeft: =50
+            Width: =541
+            X: =55
+            Y: =339
+      - usericon_8:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Height: =44
+            Icon: =Icon.AddUser
+            Width: =36
+            X: =60
+            Y: =352
+      - PasswordLabel_6:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Font: =Font.'Open Sans'
+            Text: ="Email"
+            X: =53
+            Y: =413
+      - txtEmail_1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =
+            Default: =varUserEmail
+            DisplayMode: =DisplayMode.View
+            Font: =Font.'Open Sans'
+            HintText: ="Enter your Email"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            PaddingLeft: =50
+            Width: =541
+            X: =53
+            Y: =485
+      - EmailLabel_11:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Font: =Font.'Open Sans'
+            Text: ="Phone Number"
+            X: =54
+            Y: =563
+      - PhoneNumber_1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =
+            Default: =varCurrentUser.Phone_Number
+            DisplayMode: =DisplayMode.View
+            Font: =Font.'Open Sans'
+            HintText: ="Enter your PhoneNumber"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            OnSelect: =Set(showError, false)
+            PaddingLeft: =50
+            Width: =541
+            X: =54
+            Y: =634
+      - EmailLabel_12:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Font: =Font.'Open Sans'
+            Text: ="Gender"
+            X: =57
+            Y: =706
+      - Icon6:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Height: =45
+            Icon: =Icon.Edit
+            OnSelect: =Navigate(PersonalDetails_Screen)
+            Width: =49
+            X: =3
+            Y: =11
+      - PasswordLabel_7:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Font: =Font.'Open Sans'
+            Text: ="Date Joined"
+            X: =53
+            Y: =850
+      - DateJoined_1:
+          Control: Classic/DatePicker@2.6.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DefaultDate: =varCurrentUser.Date_Joined
+            DisplayMode: =DisplayMode.View
+            Font: =Font.'Open Sans'
+            IconBackground: =RGBA(56, 96, 178, 1)
+            IconFill: =RGBA(255, 255, 255, 1)
+            PaddingLeft: =50
+            Width: =541
+            X: =54
+            Y: =920
+      - Container1_2:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Horizontal
+            LayoutWrap: =true
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            Width: =640
+            Y: =1072
+          Children:
+            - Homeicon_10:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Home
+                  OnSelect: =Navigate(HomeScreen)
+                  Width: =44
+                  X: =87
+                  Y: =761
+            - Searchicon_8:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Search
+                  OnSelect: =Navigate(SearchScreen)
+                  Width: =44
+                  X: =189
+                  Y: =777
+            - Wishlisticon_8:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =35
+                  Icon: =Icon.Support
+                  OnSelect: =Launch("https://share.chatling.ai/s/PjD8JKwqYbE7ELC")
+                  Width: =44
+                  X: =327
+                  Y: =801
+            - Icon1_7:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =44
+                  Icon: =Icon.ListScrollWatchlist
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  OnSelect: =Navigate(CategoriesScreen)
+                  Width: =44
+            - Profileicon_8:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =ColorValue("#FAF4DF")
+                  FillPortions: =1
+                  Height: =40
+                  Icon: =Icon.Person
+                  OnSelect: =Navigate(ProfileScreen)
+                  Width: =44
+                  X: =523
+                  Y: =701
+      - Icon12_4:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Height: =45
+            Icon: =Icon.Heart
+            OnSelect: =Navigate(FavoritesScreen)
+            Width: =49
+            X: =491
+            Y: =12
+      - Icon5:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =ColorValue("#FAF4DF")
+            Height: =45
+            Icon: =Icon.Leave
+            OnSelect: =Navigate(LoginScreen_user)
+            Width: =49
+            X: =579
+            Y: =11
+      - PhoneNumber_2:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =
+            Default: =varCurrentUser.Gender
+            DisplayMode: =DisplayMode.View
+            Font: =Font.'Open Sans'
+            HintText: ="Gender"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            OnSelect: =Set(showError, false)
+            PaddingLeft: =50
+            Width: =541
+            X: =54
+            Y: =777
+      - Image2:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =44
+            Image: ='phone-call'
+            Width: =36
+            X: =60
+            Y: =647
+      - Icon7:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            Height: =44
+            Icon: =Icon.Mail
+            Width: =36
+            X: =60
+            Y: =501
+      - Image4:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =44
+            Image: ='male-and-female'
+            Width: =36
+            X: =60
+            Y: =791
+      - Icon7_2:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 0, 0, 1)
+            Height: =44
+            Icon: =Icon.CalendarBlank
+            Width: =36
+            X: =60
+            Y: =931

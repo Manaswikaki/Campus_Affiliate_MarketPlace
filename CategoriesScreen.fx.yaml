@@ -1,0 +1,172 @@
+CategoriesScreen As screen:
+    Fill: =RGBA(255, 255, 255, 1)
+
+    Header_7 As rectangle:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        Width: =640
+        ZIndex: =1
+
+    "Gallery4_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageTwoColumnVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =1006
+        Items: =MainCategories
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        OnSelect: |-
+            =Set(SelectedCategory, ThisItem.Title);
+            Navigate(SubCategoriesScreen)
+        TemplatePadding: =0
+        TemplateSize: =431
+        Transition: =Transition.Pop
+        WrapCount: =2
+        Y: =64
+        ZIndex: =4
+
+        Image_1 As image:
+            Height: =Min(Self.Width, Parent.TemplateHeight - 115)
+            Image: =ThisItem.CategoryimageLink
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =Parent.TemplateWidth - 32
+            X: =16
+            Y: =16
+            ZIndex: =1
+
+        Label2 As label:
+            FontWeight: =FontWeight.Bold
+            Height: =80
+            OnSelect: =Select(Parent)
+            Size: =25
+            Text: =ThisItem.Title
+            Width: =288
+            X: =16
+            Y: =302
+            ZIndex: =2
+
+    Header_8 As rectangle:
+        Fill: =RGBA(215, 223, 240, 1)
+        Height: =64
+        Width: =640
+        Y: =1072
+        ZIndex: =5
+
+    Container_1 As groupContainer.horizontalAutoLayoutContainer:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutGridColumnMinWidth: =0
+        LayoutGridColumns: =6
+        LayoutGridRowMinHeight: =0
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        LayoutWrap: =true
+        maximumHeight: =11360
+        maximumWidth: =640
+        PaddingBottom: =8
+        PaddingLeft: =8
+        PaddingRight: =8
+        PaddingTop: =8
+        Width: =640
+        Y: =1072
+        ZIndex: =6
+
+        Homeicon_3 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Home
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(HomeScreen)
+            Width: =44
+            X: =87
+            Y: =761
+            ZIndex: =1
+
+        Searchicon_2 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Search
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(SearchScreen)
+            Width: =44
+            X: =189
+            Y: =777
+            ZIndex: =2
+
+        Wishlisticon_2 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =35
+            Icon: =Icon.Support
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: |-
+                =Launch("https://share.chatling.ai/s/PjD8JKwqYbE7ELC")
+            Width: =44
+            X: =327
+            Y: =801
+            ZIndex: =3
+
+        Icon1_1 As icon.ShoppingCart:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =44
+            Icon: =Icon.ListScrollWatchlist
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =16
+            LayoutMinWidth: =16
+            OnSelect: =Navigate(CategoriesScreen)
+            Width: =44
+            ZIndex: =4
+
+        Profileicon_2 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Person
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(ProfileScreen)
+            Width: =44
+            X: =523
+            Y: =701
+            ZIndex: =5
+
+    Icon12_2 As icon:
+        Color: |-
+            =ColorValue("#FAF4DF")
+        Height: =45
+        Icon: =Icon.Heart
+        OnSelect: =Navigate(FavoritesScreen)
+        Width: =49
+        X: =580
+        Y: =9
+        ZIndex: =8
+
+    Icon10_6 As icon:
+        Color: |-
+            =ColorValue("#FAF4DF")
+        Height: =40
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(HomeScreen)
+        Width: =44
+        X: =7
+        Y: =12
+        ZIndex: =9
+

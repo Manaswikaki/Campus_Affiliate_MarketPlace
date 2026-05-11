@@ -1,0 +1,146 @@
+EnterEmail As screen:
+    BackgroundImage: =
+    Fill: =RGBA(255, 255, 255, 1)
+    ImagePosition: =ImagePosition.Fill
+
+    Group3_1 As group:
+        Height: =5
+        minimumHeight: =5
+        minimumWidth: =5
+        Visible: =true
+        Width: =5
+        X: =0
+        Y: =20
+
+        Header_6 As rectangle:
+            Fill: |-
+                =ColorValue("#E3562B")
+            Height: =64
+            Width: =640
+            ZIndex: =14
+
+        Icon10_1 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            Fill: |-
+                =ColorValue("#E3562B")
+            Height: =40
+            Icon: =Icon.BackArrow
+            OnSelect: =Navigate(LoginScreen_user)
+            Width: =44
+            X: =7
+            Y: =12
+            ZIndex: =15
+
+    BackGround_enter As rectangle:
+        Fill: |-
+            =ColorValue("#FAF4DF")
+        Height: =675
+        Width: =581
+        X: =27
+        Y: =258
+        ZIndex: =2
+
+    EnterLabel As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =21
+        Text: ="Enter Email To Reset the Password"
+        Width: =560
+        X: =32
+        Y: =324
+        ZIndex: =3
+
+    EmailLabel_Enter As label:
+        Height: =70
+        Size: =21
+        Text: ="Email "
+        Width: =560
+        X: =45
+        Y: =443
+        ZIndex: =4
+
+    InvalidEmailError As label:
+        Height: =30
+        Size: =15
+        Text: ="Email is Invalid.Please Enter Valid Email."
+        Visible: =showError
+        Width: =555
+        X: =45
+        Y: =638
+        ZIndex: =11
+
+    SendOTPbutton As button:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =51
+        OnSelect: |-
+            =// 🔹 Reset error first
+            UpdateContext({showInvalidEmail: false});
+            // 🔹 Store entered email (IMPORTANT)
+            Set(varResetEmail, Userinput_enter.Text);
+            // 🔹 Check if email exists in SharePoint
+            Set(
+                varUserRecord,
+                LookUp(
+                    Student_Credentials,
+                    User_Email = Userinput_enter.Text
+                )
+            );
+            If(
+                IsBlank(varUserRecord),
+                // ❌ Email NOT found
+                UpdateContext({showInvalidEmail: true}),
+                // ✅ Email exists → send OTP
+                Set(var_Otp, RandBetween(100000, 999999));
+                // Update OTP in SharePoint
+                Patch(
+                    Student_Credentials,
+                    varUserRecord,
+                    { OTP: var_Otp }
+                );
+                // Send email to entered email (NOT User().Email)
+                Office365Outlook.SendEmailV2(
+                    Userinput_enter.Text,
+                    "Demo App - Reset Password OTP",
+                    "Hi, you requested a password reset." & Char(10) &
+                    "Your OTP is: " & var_Otp & Char(10) &
+                    "Thank you!"
+                );
+                Navigate(EnterOTP);
+                Reset(Userinput_enter)
+            )
+        Size: =20
+        Text: ="Send OTP"
+        Width: =161
+        X: =224
+        Y: =728
+        ZIndex: =13
+
+    Group2 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =14
+
+        Userinput_enter As text:
+            Default: =
+            Height: =70
+            HintText: ="Enter your Email"
+            PaddingLeft: =50
+            Size: =21
+            Width: =541
+            X: =48
+            Y: =513
+            ZIndex: =5
+
+        usericon_enter As icon.AddUser:
+            Height: =44
+            Icon: =Icon.AddUser
+            Width: =36
+            X: =51
+            Y: =526
+            ZIndex: =6
+

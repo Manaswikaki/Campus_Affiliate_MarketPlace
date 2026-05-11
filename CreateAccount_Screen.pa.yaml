@@ -1,0 +1,321 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  CreateAccount_Screen:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      ImagePosition: =ImagePosition.Fill
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Header_2:
+          Control: Rectangle@2.3.0
+          Group: Group3_2
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =ColorValue("#E3562B")
+            Height: =64
+            Width: =640
+      - Icon10_9:
+          Control: Classic/Icon@2.5.0
+          Group: Group3_2
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            Fill: =ColorValue("#E3562B")
+            Height: =40
+            Icon: =Icon.BackArrow
+            OnSelect: =Navigate(LoginScreen_user)
+            Width: =44
+            X: =7
+            Y: =12
+      - BackGround_2:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Height: =811
+            Width: =600
+            X: =20
+            Y: =255
+      - LoginLabel_2:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Text: ="Create Account for User"
+            X: =40
+            Y: =286
+      - EmailLabel_2:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Semibold
+            Text: |-
+              ="New Password
+              "
+            X: =51
+            Y: =514
+      - NewPassword_input_1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: |-
+              =If(
+                  IsBlank(Self.Text),
+                  RGBA(0,11,102,1),
+                  If(
+                      IsMatch(
+                          Self.Text,
+                          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$"
+                      ),
+                      RGBA(0,13,107,1),
+                      Color.Red
+                  )
+              )
+            Default: =
+            DisplayMode: =
+            Font: =Font.'Lato Black'
+            HintText: ="Enter your Email"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            Mode: =If(varShowPassword, TextMode.SingleLine, TextMode.Password)
+            PaddingLeft: =50
+            Width: =541
+            X: =49
+            Y: =583
+      - Passwordicon_3:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Height: =44
+            Icon: =Icon.Lock
+            Width: =36
+            X: =52
+            Y: =591
+      - ViewIcon_3:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Height: =44
+            Icon: =If(varShowPassword, Icon.Hide, Icon.View)
+            OnSelect: =Set(varShowPassword, !varShowPassword)
+            Width: =36
+            X: =539
+            Y: =596
+      - PasswordLabel_2:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Semibold
+            Text: |-
+              ="Confirm Paasword
+              "
+            X: =47
+            Y: =656
+      - Confirm_Password_Input_1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: |-
+              =If(
+                  Self.Text = NewPassword_input_1.Text,
+                  RGBA(0,13,107,1),
+                  Color.Red
+              )
+            Default: =
+            DisplayMode: =
+            Font: =Font.'Lato Black'
+            HintText: ="Enter your Password"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            Mode: =If(varShowPassword, TextMode.SingleLine, TextMode.Password)
+            PaddingLeft: =50
+            Width: =541
+            X: =47
+            Y: =726
+      - Passwordicon_4:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Height: =44
+            Icon: =Icon.Lock
+            Width: =36
+            X: =52
+            Y: =739
+      - ViewIcon_4:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Height: =44
+            Icon: =If(varShowPassword, Icon.Hide, Icon.View)
+            OnSelect: =Set(varShowPassword, !varShowPassword)
+            Width: =36
+            X: =539
+            Y: =739
+      - labelError_2:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            Height: =30
+            Size: =15
+            Text: ="Password should be correct."
+            Visible: =showError
+            Width: =555
+            X: =51
+            Y: =691
+      - Loginbutton_2:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: |-
+              =If(
+                  !IsBlank(NewPassword_input_1.Text) &&
+                  !IsBlank(Confirm_Password_Input_1.Text) &&
+                  IsMatch(
+                      NewPassword_input_1.Text,
+                      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$"
+                  ) &&
+                  Trim(Confirm_Password_Input_1.Text) = Trim(NewPassword_input_1.Text),
+                  DisplayMode.Edit,
+                  DisplayMode.Disabled
+              )
+            Fill: =ColorValue("#E3562B")
+            Font: =Font.'Open Sans'
+            Height: =56
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+            OnSelect: |-
+              =If(
+                  // ❌ Only allow college emails
+                  !(
+                      EndsWith(Lower(Email_input.Text), "@acet.ac.in") ||
+                      EndsWith(Lower(Email_input.Text), "@aec.edu.in")
+                  ),
+                  Notify(
+                      "❌ Use your college email only (@acet.ac.in or @aec.edu.in)",
+                      NotificationType.Error
+                  ),
+
+                  // ❌ Duplicate email check
+                  !IsBlank(
+                      LookUp(
+                          Student_Credentials,
+                          Lower(User_Email) = Lower(Email_input.Text)
+                      )
+                  ),
+                  Notify("❌ This email already exists", NotificationType.Error),
+
+                  // ❌ Password mismatch check
+                  NewPassword_input_1.Text <> Confirm_Password_Input_1.Text,
+                  Notify("❌ Passwords do not match", NotificationType.Error),
+
+                  // ✅ If all conditions pass
+                  Patch(
+                      Student_Credentials,
+                      Defaults(Student_Credentials),
+                      {
+                          User_Email: Email_input.Text,
+                          Password: NewPassword_input_1.Text
+                      }
+                  );
+
+                  Set(varUserEmail, Email_input.Text);
+
+                  Notify("✅ Account created successfully", NotificationType.Success);
+
+                  Reset(Email_input);
+                  Reset(NewPassword_input_1);
+                  Reset(Confirm_Password_Input_1);
+
+                  Navigate(PersonalDetails_Screen, ScreenTransition.Fade)
+              )
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            Text: ="CREATE"
+            Width: =176
+            X: =225
+            Y: =906
+      - Email_input:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: |-
+              =If(
+                  IsBlank(Self.Text),
+                  RGBA(0,11,102,1),
+
+                  If(
+                      IsMatch(
+                          Self.Text,
+                          "^[0-9]{2}[a-zA-Z]{1,3}[0-9]{1,3}[a-zA-Z][0-9]{3,4}@(acet\.ac\.in|aec\.adu\.in)$"
+                      ),
+                      RGBA(0,13,107,1),
+                      Color.Red
+                  )
+              )
+            Default: =
+            DisabledFill: =RGBA(255, 255, 255, 1)
+            DisplayMode: =
+            Font: =Font.'Lato Black'
+            HintText: ="Enter your Email"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverFill: =RGBA(186, 202, 226, 1)
+            OnSelect: =Set(showError, false)
+            PaddingLeft: =50
+            Width: =541
+            X: =48
+            Y: =443
+      - usericon_1:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Height: =44
+            Icon: =Icon.AddUser
+            Width: =36
+            X: =51
+            Y: =456
+      - EmailLabel_3:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DisplayMode: =
+            Fill: =ColorValue("#FAF4DF")
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Semibold
+            Text: ="Email "
+            X: =48
+            Y: =373

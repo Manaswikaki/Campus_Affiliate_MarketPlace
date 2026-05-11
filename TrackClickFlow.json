@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "abd7db06-b259-4ba9-8d30-d5e64aeb98df",
+    "Name": "TrackClickFlow",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "aecf3d8a-6c4b-f111-bec7-002248d5c795"
+  }
+]

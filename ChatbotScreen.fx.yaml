@@ -1,0 +1,102 @@
+ChatbotScreen As screen:
+
+    Container1_5 As groupContainer.horizontalAutoLayoutContainer:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutGridColumnMinWidth: =0
+        LayoutGridColumns: =6
+        LayoutGridRowMinHeight: =0
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        LayoutWrap: =true
+        maximumHeight: =11360
+        maximumWidth: =640
+        PaddingBottom: =8
+        PaddingLeft: =8
+        PaddingRight: =8
+        PaddingTop: =8
+        Width: =640
+        Y: =1072
+        ZIndex: =1
+
+        Homeicon_11 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Home
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(HomeScreen)
+            Width: =44
+            X: =87
+            Y: =761
+            ZIndex: =1
+
+        Searchicon_11 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Search
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(SearchScreen)
+            Width: =44
+            X: =189
+            Y: =777
+            ZIndex: =2
+
+        Wishlisticon_11 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =35
+            Icon: =Icon.Support
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: |-
+                =Launch("https://share.chatling.ai/s/PjD8JKwqYbE7ELC")
+            Width: =44
+            X: =327
+            Y: =801
+            ZIndex: =3
+
+        Icon1_8 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =44
+            Icon: =Icon.ListScrollWatchlist
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =16
+            LayoutMinWidth: =16
+            OnSelect: =Navigate(CategoriesScreen)
+            Width: =44
+            ZIndex: =4
+
+        Profileicon_11 As icon:
+            Color: |-
+                =ColorValue("#FAF4DF")
+            FillPortions: =1
+            Height: =40
+            Icon: =Icon.Person
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            OnSelect: =Navigate(ProfileScreen)
+            Width: =44
+            X: =523
+            Y: =701
+            ZIndex: =5
+
+    Header_22 As rectangle:
+        Fill: |-
+            =ColorValue("#E3562B")
+        Height: =64
+        Width: =640
+        Y: =20
+        ZIndex: =2
+
