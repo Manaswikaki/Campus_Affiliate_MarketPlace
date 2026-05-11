@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Affiliate Marketplace</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Chart.js for PowerBI-like graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+    body{background:#f4f6fb;color:#0f172a;}
+
+    header{
+      background:linear-gradient(135deg,#4f46e5,#7c3aed);
+      color:#fff;
+      padding:16px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;top:0;z-index:1000;
+    }
+
+    .logo{font-size:22px;font-weight:700;}
+
+    nav a{color:white;margin-left:16px;cursor:pointer;text-decoration:none;}
+    nav a:hover{color:#fde047;}
+
+    .badge{background:#111827;padding:6px 10px;border-radius:8px;font-size:13px;}
+
+    section{display:none;padding:50px 8%;}
+    section.active{display:block;}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+
+    .card{
+      background:#fff;padding:18px;border-radius:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      text-align:center;
+    }
+
+    .btn{
+      padding:10px 14px;background:#4f46e5;color:#fff;border:none;border-radius:10px;cursor:pointer;
+    }
+
+    .btn:hover{background:#3730a3;}
+
+    input{
+      width:100%;padding:10px;margin:8px 0;border:1px solid #cbd5e1;border-radius:8px;
+    }
+
+    .hero{
+      min-height:80vh;
+      display:flex;
+      align-items:center;
+      background:#eef2ff;
+      padding:50px 8%;
+      gap:30px;
+    }
+
+    .box-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:15px;
+      margin-top:15px;
+    }
+
+    .box{
+      background:#fff;
+      padding:15px;
+      border-radius:14px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      text-align:center;
+    }
+
+    .avatar{
+      width:70px;
+      height:70px;
+      border-radius:50%;
+      margin:auto;
+      display:block;
+      object-fit:cover;
+      border:3px solid #4f46e5;
+    }
+
+    canvas{
+      max-width:100%;
+      margin-top:15px;
+      background:#fff;
+      padding:10px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .toast{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:#111827;
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      display:none;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Campus Affiliate</div>
+  <nav>
+    <a onclick="go('home')">Home</a>
+    <a onclick="go('products')">Products</a>
+    <a onclick="go('dashboard')">Dashboard</a>
+    <a onclick="go('login')">Login</a>
+  </nav>
+  <div class="badge">Cart: <span id="cart">0</span></div>
+</header>
+
+<div class="toast" id="toast"></div>
+
+<section id="home" class="active">
+  <div class="hero">
+    <div>
+      <h1>Campus Affiliate Marketplace</h1>
+      <p>AI powered student shopping + affiliate tracking system</p>
+      <button class="btn" onclick="go('products')">Explore</button>
+    </div>
+  </div>
+
+  <h2>AI Recommended Products</h2>
+  <div class="grid" id="aiGrid"></div>
+</section>
+
+<section id="products">
+  <h2>Products</h2>
+  <div class="grid">
+    <div class="card" onclick="trackClick('Laptop')">
+      <h3>Laptop</h3>
+      <p>₹54999</p>
+      <button class="btn" onclick="buy('Laptop',54999)">Buy</button>
+    </div>
+  </div>
+</section>
+
+<section id="login">
+  <h2>Login</h2>
+
+  <div class="card">
+    <button class="btn" onclick="setRole('student')">🎓 Student</button>
+    <button class="btn" onclick="setRole('admin')">🧑‍💼 Admin</button>
+
+    <input id="user" placeholder="Username" />
+    <input id="pass" type="password" placeholder="Password" />
+
+    <button class="btn" onclick="login()">Login</button>
+  </div>
+</section>
+
+<section id="dashboard">
+
+  <div id="studentDash" class="card">
+    <h3>Student Dashboard</h3>
+
+    <div class="box-grid">
+      <div class="box">
+        <img class="avatar" src="https://i.pravatar.cc/150?img=12" />
+        <h4>Profile</h4>
+      </div>
+      <div class="box"><h4>Purchases</h4><p id="sp">0</p></div>
+      <div class="box"><h4>Cart</h4><p id="ci">0</p></div>
+      <div class="box"><h4>Clicks</h4><p id="cp">0</p></div>
+    </div>
+  </div>
+
+  <div id="adminDash" class="card" style="display:none;">
+    <h3>Admin Analytics Dashboard (Power BI Style)</h3>
+
+    <div class="box-grid">
+      <div class="box"><h4>Purchases</h4><p id="ap">0</p></div>
+      <div class="box"><h4>Revenue</h4><p>₹<span id="ar">0</span></p></div>
+      <div class="box"><h4>Profit</h4><p>₹<span id="af">0</span></p></div>
+      <div class="box"><h4>Clicks</h4><p id="ac">0</p></div>
+    </div>
+
+    <canvas id="revenueChart"></canvas>
+    <canvas id="activityChart"></canvas>
+  </div>
+
+</section>
+
+<script>
+let cart=0;
+let purchases=[];
+let role='student';
+let clickedProducts=[];
+
+let revenueChart, activityChart;
+
+function toast(m){
+  let t=document.getElementById('toast');
+  t.innerText=m;
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',1500);
+}
+
+function setRole(r){role=r;}
+
+function go(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(id==='dashboard'){render();drawCharts();}
+  if(id==='home')loadAI();
+}
+
+function login(){
+  toast(role+' login success');
+  go('dashboard');
+}
+
+function trackClick(n){clickedProducts.push(n);}
+
+function buy(n,p){
+  cart++;
+  purchases.push({name:n,price:p});
+}
+
+function render(){
+  let rev=0;
+  purchases.forEach(p=>rev+=p.price);
+
+  document.getElementById('ap').innerText=purchases.length;
+  document.getElementById('ar').innerText=rev;
+  document.getElementById('af').innerText=rev*0.2;
+  document.getElementById('ac').innerText=clickedProducts.length;
+}
+
+function drawCharts(){
+  let rev=0;
+  purchases.forEach(p=>rev+=p.price);
+
+  let labels=['Revenue','Profit','Clicks','Purchases'];
+  let data=[rev,rev*0.2,clickedProducts.length,purchases.length];
+
+  if(revenueChart) revenueChart.destroy();
+  if(activityChart) activityChart.destroy();
+
+  revenueChart=new Chart(document.getElementById('revenueChart'),{
+    type:'bar',
+    data:{labels:labels,datasets:[{label:'Analytics',data:data}]}
+  });
+
+  activityChart=new Chart(document.getElementById('activityChart'),{
+    type:'line',
+    data:{labels:labels,datasets:[{label:'User Activity',data:data}]}
+  });
+}
+
+function loadAI(){
+  let grid=document.getElementById('aiGrid');
+  grid.innerHTML='<p>AI loading...</p>';
+
+  setTimeout(()=>{
+    grid.innerHTML='';
+    ['Study Lamp','Laptop Stand','Earbuds','Books'].forEach(i=>{
+      let d=document.createElement('div');
+      d.className='card';
+      d.innerHTML=`<h3>${i}</h3><button class='btn'>Buy</button>`;
+      grid.appendChild(d);
+    });
+  },600);
+}
+
+loadAI();
+</script>
+</body>
+</html>
